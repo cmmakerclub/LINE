@@ -1,14 +1,7 @@
 LINE
 ----
 
--  Documentation : http://carpedm20.github.io/line/
--  Developer Mailing List: `Google
-   Group <https://groups.google.com/forum/#!forum/line-python-developer>`__
-
-*May the LINE be with you...*
-
-Update
-------
+|PyPi version| |PyPi downloads| |PyPi status| |PyPi license|
 
 **2015.05.28**
 
@@ -27,6 +20,11 @@ Or use:
 
     >>> contact = client.contacts[0]
     >>> contact.sendImageWithURL('https://avatars3.githubusercontent.com/u/3346407?v=3&s=460')
+=======
+**2015.03.31**
+
+Sending multiple image with ``sendImage`` is solved.
+>>>>>>> Bring readme.rst back
 
 **2015.03.31**
 
