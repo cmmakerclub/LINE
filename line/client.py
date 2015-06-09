@@ -276,7 +276,7 @@ class LineClient(LineAPI):
                 else:
                     break
 
-    def createGroupWithIds(self, ids=[]):
+    def createGroupWithIds(self, name, ids=[]):
         """Create a group with contact ids
 
         :param name: name of group
@@ -449,11 +449,11 @@ class LineClient(LineAPI):
         """
         if self._check_auth():
             try:
-                self._sendMessage(message, seq)
+                return self._sendMessage(message, seq)
             except TalkException as e:
-                self.refreshAuthToken()
+                self.updateAuthToken()
                 try:
-                    self._sendMessage(message, seq)
+                    return self._sendMessage(message, seq)
                 except Exception as e:
                     self.raise_error(e)
 
@@ -483,7 +483,7 @@ class LineClient(LineAPI):
         
             return self.getLineMessageFromMessage(messages)
 
-    def longPoll(self, count=50):
+    def longPoll(self, count=50, debug=False):
         """Receive a list of operations that have to be processed by original
         Line cleint.
 
@@ -511,6 +511,8 @@ class LineClient(LineAPI):
                     return
 
             for operation in operations:
+                if debug:
+                    print operation
                 if operation.type == OT.END_OF_OPERATION:
                     pass
                 elif operation.type == OT.SEND_MESSAGE:
